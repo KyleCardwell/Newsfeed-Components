@@ -86,7 +86,25 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title: 'Scranton, Scranton, Scranton',
+    date: 'May 11th, 2021',
+    firstParagraph: `I donno I think I have done absolutely everything you can do to prepare for the day. I've updated our contacts, I have gotten quotes from supplies, I have sent out an e-vite, for our big, grand opening pancake luncheon. Six yes's, one maybe, only eleven no's. And seven hundred and eighty-eight not-yet-replied's but! Of that group, seven hundred and eighty-two have viewed it.`,
+
+    secondParagraph: `Jim is my enemy. But it turns out that Jim is also his own worst enemy. And the enemy of my enemy is my friend. So Jim, is actually my friend. But, because he is his own worst enemy, the enemy of my friend is my enemy so actually Jim is my enemy. But--`,
+
+    thirdParagraph: `When I retire, I don't want to just move to some island somewhere. I want to be the guy who gives it all back. I want it to be like, 'Hey... who donated that hospital wing that's saving so many lives?' 'I don't know. It was anonymous.' 'Well, guess what. It was Michael Scott.' 'But how do you know? It was anonymous.' [pause] 'Because I'm him.`
+  },
+  {
+    title: 'Mini Version of Regular Cake',
+    date: 'May 11th, 3000',
+    firstParagraph: `Chocolate cake fruitcake wafer donut candy cheesecake wafer caramels. Cake ice cream cake carrot cake. Oat cake donut icing gummies cupcake icing tiramisu. Croissant dragée bonbon pastry. Powder gummies tart dessert apple pie gummies icing. Donut oat cake oat cake oat cake. Cheesecake ice cream jelly-o. Marzipan brownie wafer candy canes tiramisu carrot cake cheesecake topping. Marzipan cookie tootsie roll. Chocolate bar sesame snaps danish chocolate cake cookie chupa chups marzipan pastry chupa chups.`,
+
+    secondParagraph: `Cake chocolate dragée cake sweet roll apple pie lemon drops chocolate bar. Tiramisu jelly cupcake wafer topping sesame snaps candy canes sweet cookie. Jelly cake macaroon lemon drops caramels sesame snaps marshmallow danish marzipan. Dessert jelly-o biscuit gummi bears candy canes tart marshmallow jujubes candy. Bonbon bear claw jelly-o. Tootsie roll oat cake muffin danish sweet liquorice chocolate bar.`,
+
+    thirdParagraph: `Jelly-o fruitcake donut marzipan toffee wafer sweet roll cookie. Gummi bears wafer tart tart liquorice croissant candy danish. Sweet candy biscuit topping. Bear claw liquorice chupa chups. Lollipop tart jelly beans. Cake bonbon jelly-o dragée pudding. Tart apple pie lemon drops marzipan caramels topping bonbon muffin. Sweet roll carrot cake sweet sweet roll tart croissant gingerbread tart.`
+  },
 ];
 
 /*
@@ -114,3 +132,46 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}) {
+  const article = document.createElement('div');
+  const title1 = document.createElement('h2');
+  const date1 = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const expand = document.createElement('span');
+
+  article.classList.add('article');
+  title1.classList.add('h2');
+  date1.classList.add('date');
+  expand.classList.add('expandButton')
+  
+  article.appendChild(title1);
+  article.appendChild(date1);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(expand);
+
+  title1.textContent = title;
+  date1.textContent = date;
+  p1.textContent = firstParagraph;
+  p2.textContent = secondParagraph;
+  p3.textContent = thirdParagraph;
+  expand.textContent = '+'
+
+  expand.addEventListener('click', (event) => {
+    article.classList.toggle('article-open')
+  })
+
+  return article
+}
+
+const articles = document.querySelector('.articles')
+
+data.forEach(dataElem => {
+  // const article = articleMaker(dataElem);
+  // articles.appendChild(article);
+  articles.appendChild(articleMaker(dataElem));
+})
